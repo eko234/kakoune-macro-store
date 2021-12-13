@@ -37,7 +37,6 @@ provide-module kakoune-macro-store %^
             kak.execute_keys(macro_body)
             return
           end
-          break
         end
         kak.fail("key not found")
         return
