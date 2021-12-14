@@ -40,7 +40,7 @@ provide-module kakoune-macro-store %^
             return
           end
         end
-        kak.fail(string.format("key: %s not found in map: %s ", key, macro_store_string_map))
+        kak.fail(string.format("key: %s not found in map: %s ", key, args))
         return
       }
     |
