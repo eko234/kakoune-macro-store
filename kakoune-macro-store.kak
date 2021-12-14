@@ -33,7 +33,7 @@ provide-module kakoune-macro-store %^
           end
           local map_key = string.sub(arg[ix],1 , first_eq_pos_begin - 1)
           if key == map_key then
-            local raw_macro_body = string.sub(args[ix], first_eq_pos_begin + 1, #(arg[ix]))
+            local raw_macro_body = string.sub(arg[ix], first_eq_pos_begin + 1, #(arg[ix]))
             local macro_body = string.gsub(raw_macro_body, "\\=", "=") 
             kak.execute_keys(macro_body)
             return
