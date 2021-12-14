@@ -23,24 +23,23 @@ provide-module kakoune-macro-store %^
       info -style modal
 
       lua %val{key} %opt{macro_store} %{
-        local args = args()
-        local key = args[1]
+        local key = arg[1]
 
-        for ix = 2, #args do
-          local first_eq_pos_begin, first_eq_pos_end = string.find(args[ix], "=")
+        for ix = 2, #arg do
+          local first_eq_pos_begin, first_eq_pos_end = string.find(arg[ix], "=")
           if first_eq_pos_begin ~= first_eq_pos_end then
             kak.fail("malformed map")
             return
           end
-          local map_key = string.sub(args[ix],1 , first_eq_pos_begin - 1)
+          local map_key = string.sub(arg[ix],1 , first_eq_pos_begin - 1)
           if key == map_key then
-            local raw_macro_body = string.sub(args[ix], first_eq_pos_begin + 1, #(args[ix]))
+            local raw_macro_body = string.sub(args[ix], first_eq_pos_begin + 1, #(arg[ix]))
             local macro_body = string.gsub(raw_macro_body, "\\=", "=") 
             kak.execute_keys(macro_body)
             return
           end
         end
-        kak.fail(string.format("key: %s not found in map: %s ", key, args))
+        kak.fail(string.format("key: %s not found in map: %s ", key, arg))
         return
       }
     |
